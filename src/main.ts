@@ -18,6 +18,7 @@ import { splitNsName } from '@angular/compiler';
 })
 export class App {
   name = 'Angular';
+  ObjDiffList: any = [];
 
   // JavaScript source code
   Input1 = {
@@ -83,16 +84,117 @@ export class App {
     ProductsHandled: 3244,
   };
 
+  Input3 = {
+    IsActive: true,
+    Name: 'Test hardik',
+    InsuranceCaseTypeMaster: {
+      CaseTypeId: {
+        EnumDetailID: 6,
+      },
+    },
+    NameOfICManager: 'HHH',
+    RegisteredOffice: '123',
+    Designation: {
+      EnumDetailID: 1,
+    },
+    GSTNumber: 'sadasdsadsa',
+    InsuranceTPAMaster: [
+      {
+        Id: '',
+        TPAName: 'dsadsa',
+      },
+      {
+        Id: '',
+        TPAName: 'asdsa ',
+      },
+    ],
+    Commment: '',
+    EntityLocation: [
+      {
+        LocationId: {
+          StateId: {
+            ID: 1,
+          },
+          CityId: {
+            ID: 6756,
+          },
+          Pincode: '123 123',
+          Address: 'sadas sadsa d ',
+          Id: '',
+        },
+        AppobjectId: '937057CA-5FA3-4871-A1D3-5EA6715C0937',
+        Id: '',
+        AppObjectId: '62213C2B-313E-4643-B343-F42E50131835',
+      },
+    ],
+    EntityContact: [
+      {
+        AppobjectId: '62213C2B-313E-4643-B343-F42E50131835',
+        ContactId: {
+          Id: '',
+
+          PrimaryContactNumber: '3432432442',
+        },
+        Id: '',
+      },
+    ],
+    TATTarget: 1111,
+    SuccessTarget: 22,
+    ProductsHandled: 3244,
+  };
+
   Input2 = 'InsuranceCaseTypeMaster.CaseTypeId.EnumDetailID';
 
-  ReadJson() {
-    console.log('First Input: ', this.Input1);
-    console.log('Second Input: ', this.Input2);
-    var finalValue = this.ProcessJson(this.Input1, false);
-    console.log('Result: ', finalValue);
+  AddDifferenceInGlobalObject(PropertyName: any, OldValue: any, NewValue: any) {
+    var obj = {
+      PropertyName: PropertyName,
+      OldValue: OldValue,
+      NewValue: NewValue,
+    };
+    this.ObjDiffList.push(obj);
+  }
 
-    var ReverseValue = this.ProcessJson(finalValue, true);
-    console.log('Result Reverse: ', ReverseValue);
+  IterateWithObject(obj1: any, obj2: any) {
+    for (const property in obj1) {
+      if (!obj2.hasOwnProperty(property)) {
+        this.AddDifferenceInGlobalObject(property, obj1[property], null);
+      } else {
+        var value1 = obj1[property];
+        var value2 = obj2[property];
+
+        if (value1 != value2) {
+          this.AddDifferenceInGlobalObject(property, value1, value2);
+        } else {
+          let objType = typeof value1;
+          if (objType == 'object' || Array.isArray(value1)) {
+            this.FindTheDifferencesFromTwoObjects(value1, value2);
+          }
+        }
+      }
+    }
+  }
+
+  FindTheDifferencesFromTwoObjects(Obj1: any, Obj2: any) {
+    if (Array.isArray(Obj1)) {
+      for (var counter = 0; counter < Obj1.length; counter++) {
+        if (Obj2.hasOwnProperty(counter)) {
+          this.IterateWithObject(Obj1[counter], Obj2[counter]);
+        }
+      }
+    } else {
+      this.IterateWithObject(Obj1, Obj2);
+    }
+  }
+
+  ReadJson() {
+    this.FindTheDifferencesFromTwoObjects(this.Input1, this.Input3);
+    console.log(this.ObjDiffList);
+    //  console.log('First Input: ', this.Input1);
+    //console.log('Second Input: ', this.Input2);
+    //var finalValue = this.ProcessJson(this.Input1, false);
+    //console.log('Result: ', finalValue);
+    // var ReverseValue = this.ProcessJson(finalValue, true);
+    //console.log('Result Reverse: ', ReverseValue);
   }
 
   verifyPropertyExist(passValue: any, IsReverse: boolean) {
