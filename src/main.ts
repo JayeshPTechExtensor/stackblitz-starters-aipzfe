@@ -229,21 +229,29 @@ export class App {
 
       if (SplitString.length == 2) {
         var counter = 0;
+        OldValue = currentValue;
+        currentValue = currentValue[SplitString[counter]];
+        counter++;
         var valueToBeSet: any;
         if (Array.isArray(currentValue)) {
-          console.log('This is called');
-          var finalValue;
+          var finalValue = [];
           for (
             var childCounter = 0;
             childCounter < currentValue.length;
             childCounter++
           ) {
-            console.log(currentValue[childCounter][SplitString[counter]]);
+            finalValue.push(
+              currentValue[childCounter][SplitString[counter - 1]]
+            );
           }
-          // valueToBeSet = finalValue;
+          valueToBeSet = finalValue;
         } else {
           valueToBeSet = currentValue[SplitString[counter]];
         }
+        var keyPropery = SplitString[counter];
+        var setValue: { [keyPropery: string]: any } = {};
+        setValue[keyPropery] = valueToBeSet;
+        OldValue[SplitString[counter - 1]] = setValue;
       } else {
         for (var counter = 0; counter < SplitString.length - 1; counter++) {
           if (counter == SplitString.length - 2) {
