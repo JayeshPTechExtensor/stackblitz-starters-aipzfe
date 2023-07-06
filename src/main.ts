@@ -133,7 +133,7 @@ export class App {
     isEdit: true,
   };
 
-  Input2 = 'DoctorQualification.Qualification.EnumDetailID';
+  Input2 = 'DoctorBranch.BranchId';
 
   ReadJson() {
     console.log('First Input: ', this.Input1);
