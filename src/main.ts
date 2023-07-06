@@ -21,75 +21,125 @@ export class App {
 
   // JavaScript source code
   Input1 = {
-    IsActive: true,
-    Name: 'Test hardik',
-    InsuranceCaseTypeMaster: {
-      CaseTypeId: {
-        EnumDetailID: [6, 7, 8],
-      },
-    },
-    NameOfICManager: 'HHH',
-    RegisteredOffice: '123',
-    Designation: {
-      EnumDetailID: 1,
-    },
-    GSTNumber: 'sadasdsadsa',
-    InsuranceTPAMaster: [
+    HospitalDoctor: [
       {
-        Id: '',
-        TPAName: 'dsadsa',
+        HospitalId: {
+          Name: 'CIMS Hospital',
+          Id: 'ccfd61dd-5645-494d-b535-023dcd7d6cad',
+        },
+        Id: 'c2a35d38-b27f-4024-8f35-3f52d380d223',
+        DoctorId: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+        DoctorBranch: {
+          BranchId: [
+            '92c5b7fa-1b87-4e2a-b47b-2c3413f0447c',
+            '06155375-2f8c-4a49-a25a-d8c141d13376',
+          ],
+        },
       },
       {
-        Id: '',
-        TPAName: 'asdsa ',
+        HospitalId: {
+          Name: 'Sri Krishna Children Hospital',
+          Id: 'd9b1a1b7-8ccd-4453-8d9b-04fd200c6c1b',
+        },
+        Id: 'e5b62f62-8c9f-4c52-a807-6977b228c797',
+        DoctorId: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+        DoctorBranch: {
+          BranchId: ['3ba58a8f-066a-46c2-89dd-c2b46d140167'],
+        },
       },
     ],
-    Commment: '',
+    Name: 'Dr. Shri Krishnan Aiyar',
+    DoctorQualification: {
+      Qualification: {
+        EnumDetailID: [6, 7, 8, 5],
+      },
+    },
+    Speciality: 2,
+    IsActive: true,
+    AuthenticationType: {
+      EnumDetailID: 1,
+      Description: 'Genuine',
+      Sequence: null,
+      ID: 2571,
+      EnumID: 2227,
+      ParentEnumId: null,
+      SystemValue: 'Genuine',
+      DisplayValue: 'Genuine',
+    },
+    Remark:
+      "Dr. Shri Krishnan Aiyar is best doctor and provide best treatment , thanks to the nursing staff who's Taking proper care.\n\n",
     EntityLocation: [
       {
-        State: '',
-        City: '',
-        PinCode: '',
-        Address: '',
         LocationId: {
-          StateId: {
-            ID: 1,
-          },
           CityId: {
-            ID: 6756,
+            StateID: 2,
+            CityName: 'Nellimarla',
+            ID: 3387,
           },
-          Pincode: '123 123',
-          Address: 'sadas sadsa d ',
-          Id: '',
+          CountryId: null,
+          StateId: {
+            CountryID: 101,
+            StateName: 'Andhra Pradesh',
+            ID: 2,
+          },
+          Pincode: '989 887',
+          Address:
+            'Sri Krishna School Rd, Saravana Nagar, Koundampalayam, Coimbatore, Tamil Nadu, India',
+          Id: '79f36afd-a95c-4418-bcf4-c97961e9ad5f',
+          GoogleLocationData:
+            'Sri Krishna School Rd, Saravana Nagar, Koundampalayam, Coimbatore, Tamil Nadu, India',
+          Longitude: null,
+          Lattitude: null,
         },
-        AppobjectId: '937057CA-5FA3-4871-A1D3-5EA6715C0937',
-        Id: '',
-        AppObjectId: '62213C2B-313E-4643-B343-F42E50131835',
+        PrimaryKeyValue: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+        AppObjectId: '057c1748-c6d0-4294-9495-33cca69e824f',
+        Id: 'f353bef8-fb52-4c9d-9a36-1009da3c5b97',
       },
     ],
     EntityContact: [
       {
-        AppobjectId: '62213C2B-313E-4643-B343-F42E50131835',
         ContactId: {
-          Id: '',
-          PrimaryEmail: 'dad@dd.com',
-          PrimaryContactNumber: '3432432442',
+          SecondaryEmail: null,
+          PrimaryEmail: 'krishna@yopmail.com',
+          PrimaryContactNumber: '7867867675',
+          Id: '180a3720-2ad4-436f-b468-a944f7ee2477',
+          SecondaryContactNumber: null,
         },
-        Id: '',
+        IsDefault: null,
+        IsRelativeContact: null,
+        Id: 'a4cbc7bc-aa65-49ea-a4ed-8f964ffa68d3',
+        Status: null,
+        AppobjectId: '057c1748-c6d0-4294-9495-33cca69e824f',
+        PrimaryKeyValue: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
       },
     ],
-    TATTarget: 1111,
-    SuccessTarget: 22,
-    ProductsHandled: 3244,
+    RegNumber: '8978675',
+    ImageId: {
+      ID: 97,
+      URL: 'https://tab-qa.techextensor.com/AppData/Phoenix/Attachments/Files/20230427061245246_1682575964120.png',
+    },
+    RecordInfo: {
+      IsSystemRecord: null,
+      BlueprintId: null,
+      BlueprintStatusId: null,
+      RecordId: '85096271-33b0-411f-b6c4-d753a895be3d',
+      PrimaryKey: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+    },
+    Id: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+    SrNumber: 'PCS',
+    customParams: {
+      Id: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+    },
+    isEdit: true,
   };
 
-  Input2 = 'InsuranceCaseTypeMaster.CaseTypeId.EnumDetailID';
+  Input2 = 'DoctorBranch.BranchId';
 
   ReadJson() {
-    console.log('First Input: ', this.Input1);
-    console.log('Second Input: ', this.Input2);
+    // console.log('First Input: ', this.Input1);
+    //  console.log('Second Input: ', this.Input2);
     var finalValue = this.ProcessJson(this.Input1, false);
-    console.log('Result: ', finalValue);
+    // console.log('Result: ', finalValue);
 
     var ReverseValue = this.ProcessJson(finalValue, true);
     console.log('Result Reverse: ', ReverseValue);
@@ -104,7 +154,7 @@ export class App {
       maxValue = maxValue - 1;
     }
 
-    if (maxValue > 1) {
+    if (maxValue > 0) {
       for (var counter = 0; counter < maxValue; counter++) {
         if (isExist == true) {
           if (Array.isArray(currentValue) && currentValue.length > 0) {
@@ -130,9 +180,11 @@ export class App {
     if (SplitString.length > 1) {
       var lastValue = SplitString[SplitString.length - 1];
       var currentValue = passValue;
+
       for (var counter = 0; counter < SplitString.length - 1; counter++) {
         if (currentValue && currentValue.hasOwnProperty(SplitString[counter])) {
           var compareObjCounter = SplitString.length - 2;
+
           if (counter == compareObjCounter) {
             if (Array.isArray(currentValue[SplitString[counter]][lastValue])) {
               var childValues = [];
@@ -149,7 +201,11 @@ export class App {
                   currentValue[SplitString[counter]][lastValue][childCount];
                 childValues.push(setValue);
               }
-              OldValue[SplitString[counter - 1]] = childValues;
+              if (OldValue == null || OldValue == undefined) {
+                currentValue[SplitString[counter]] = childValues;
+              } else {
+                OldValue[SplitString[counter - 1]] = childValues;
+              }
             } else {
               currentValue[SplitString[counter]] =
                 currentValue[SplitString[counter]][lastValue];
@@ -170,33 +226,54 @@ export class App {
     if (SplitString.length > 1) {
       var lastValue = SplitString[SplitString.length - 1];
       var currentValue = passValue;
-      for (var counter = 0; counter < SplitString.length - 1; counter++) {
-        if (counter == SplitString.length - 2) {
-          var valueToBeSet;
 
-          if (Array.isArray(currentValue)) {
-            var finalValue = [];
-            for (
-              var childCounter = 0;
-              childCounter < currentValue.length;
-              childCounter++
-            ) {
-              finalValue.push(currentValue[childCounter][SplitString[counter]]);
-            }
-            valueToBeSet = finalValue;
-          } else {
-            valueToBeSet = currentValue[SplitString[counter]];
+      if (SplitString.length == 2) {
+        var counter = 0;
+        var valueToBeSet: any;
+        if (Array.isArray(currentValue)) {
+          console.log('This is called');
+          var finalValue;
+          for (
+            var childCounter = 0;
+            childCounter < currentValue.length;
+            childCounter++
+          ) {
+            console.log(currentValue[childCounter][SplitString[counter]]);
           }
-
-          var keyPropery = SplitString[counter];
-          var setValue: { [keyPropery: string]: any } = {};
-          var finalValueSet: { [lastValue: string]: any } = {};
-          finalValueSet[lastValue] = valueToBeSet;
-          setValue[keyPropery] = finalValueSet;
-          OldValue[SplitString[counter - 1]] = setValue;
+          // valueToBeSet = finalValue;
         } else {
-          OldValue = currentValue;
-          currentValue = currentValue[SplitString[counter]];
+          valueToBeSet = currentValue[SplitString[counter]];
+        }
+      } else {
+        for (var counter = 0; counter < SplitString.length - 1; counter++) {
+          if (counter == SplitString.length - 2) {
+            var valueToBeSet;
+            if (Array.isArray(currentValue)) {
+              console.log('This is called');
+              var finalValue = [];
+              for (
+                var childCounter = 0;
+                childCounter < currentValue.length;
+                childCounter++
+              ) {
+                finalValue.push(
+                  currentValue[childCounter][SplitString[counter]]
+                );
+              }
+              valueToBeSet = finalValue;
+            } else {
+              valueToBeSet = currentValue[SplitString[counter]];
+            }
+            var keyPropery = SplitString[counter];
+            var setValue: { [keyPropery: string]: any } = {};
+            var finalValueSet: { [lastValue: string]: any } = {};
+            finalValueSet[lastValue] = valueToBeSet;
+            setValue[keyPropery] = finalValueSet;
+            OldValue[SplitString[counter - 1]] = setValue;
+          } else {
+            OldValue = currentValue;
+            currentValue = currentValue[SplitString[counter]];
+          }
         }
       }
     }
@@ -208,13 +285,30 @@ export class App {
       IsReverse == true &&
       this.verifyPropertyExist(passValue, IsReverse) == true
     ) {
-      // console.log('Yes This is called.');
-      this.AddThePropertyWithTheObject(passValue);
+      if (Array.isArray(passValue)) {
+        for (var counter = 0; counter < passValue.length; counter++) {
+          passValue[counter] = this.AddThePropertyWithTheObject(
+            passValue[counter]
+          );
+        }
+        return passValue;
+      } else {
+        return this.AddThePropertyWithTheObject(passValue);
+      }
     } else if (
       IsReverse == false &&
       this.verifyPropertyExist(passValue, IsReverse) == true
     ) {
-      return this.DeleteTheLastObjectProperty(passValue);
+      if (Array.isArray(passValue)) {
+        for (var counter = 0; counter < passValue.length; counter++) {
+          passValue[counter] = this.DeleteTheLastObjectProperty(
+            passValue[counter]
+          );
+        }
+        return passValue;
+      } else {
+        return this.DeleteTheLastObjectProperty(passValue);
+      }
     } else {
       for (const property in passValue) {
         let objType = typeof passValue[property];
@@ -223,6 +317,17 @@ export class App {
             passValue[property],
             IsReverse
           );
+        } else if (Array.isArray(passValue[property])) {
+          for (
+            var counter = 0;
+            counter < passValue[property].length;
+            counter++
+          ) {
+            passValue[property][counter] = this.ProcessJson(
+              passValue[property][counter],
+              IsReverse
+            );
+          }
         }
       }
     }
