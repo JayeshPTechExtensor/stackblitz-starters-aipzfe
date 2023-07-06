@@ -253,18 +253,18 @@ export class App {
             console.log(currentValue);
             var valueToBeSet;
             console.log(SplitString[counter]);
-            if (Array.isArray(currentValue)) {
+            if (Array.isArray(currentValue[SplitString[counter]])) {
               var finalValue = [];
               for (
                 var childCounter = 0;
-                childCounter < currentValue.length;
+                childCounter < currentValue[SplitString[counter]].length;
                 childCounter++
               ) {
-                console.log(
-                  currentValue[childCounter][SplitString[counter]][lastValue]
+                finalValue.push(
+                  currentValue[SplitString[counter]][childCounter][lastValue]
                 );
               }
-              // valueToBeSet = finalValue;
+              valueToBeSet = finalValue;
             } else {
               valueToBeSet = currentValue[SplitString[counter]];
             }
