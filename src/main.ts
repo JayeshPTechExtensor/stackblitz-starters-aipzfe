@@ -133,13 +133,13 @@ export class App {
     isEdit: true,
   };
 
-  Input2 = 'DoctorBranch.BranchId';
+  Input2 = 'DoctorQualification.Qualification.EnumDetailID';
 
   ReadJson() {
-    // console.log('First Input: ', this.Input1);
-    //  console.log('Second Input: ', this.Input2);
+    console.log('First Input: ', this.Input1);
+    console.log('Second Input: ', this.Input2);
     var finalValue = this.ProcessJson(this.Input1, false);
-    // console.log('Result: ', finalValue);
+    console.log('Result: ', finalValue);
 
     var ReverseValue = this.ProcessJson(finalValue, true);
     console.log('Result Reverse: ', ReverseValue);
@@ -189,6 +189,9 @@ export class App {
             if (Array.isArray(currentValue[SplitString[counter]][lastValue])) {
               var childValues = [];
               var keyProperty = SplitString[counter];
+              if (SplitString.length == 2) {
+                keyProperty = lastValue;
+              }
 
               for (
                 var childCount = 0;
@@ -240,9 +243,7 @@ export class App {
             childCounter < currentValue.length;
             childCounter++
           ) {
-            finalValue.push(
-              currentValue[childCounter][SplitString[counter - 1]]
-            );
+            finalValue.push(currentValue[childCounter][lastValue]);
           }
           valueToBeSet = finalValue;
         } else {
