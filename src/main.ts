@@ -2,6 +2,7 @@ import 'zone.js/dist/zone';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { splitNsName } from '@angular/compiler';
 
 @Component({
   selector: 'my-app',
@@ -24,7 +25,7 @@ export class App {
     Name: 'Test hardik',
     InsuranceCaseTypeMaster: {
       CaseTypeId: {
-        EnumDetailID: [6, 7, 8],
+        EnumDetailID: 6,
       },
     },
     NameOfICManager: 'HHH',
@@ -87,17 +88,28 @@ export class App {
   ReadJson() {
     console.log('First Input: ', this.Input1);
     console.log('Second Input: ', this.Input2);
-    var finalValue = this.ProcessJson(this.Input1);
+    var finalValue = this.ProcessJson(this.Input1, false);
     console.log('Result: ', finalValue);
+
+    var ReverseValue = this.ProcessJson(finalValue, true);
+    console.log('Result Reverse: ', ReverseValue);
   }
 
-  verifyPropertyExist(passValue: any) {
+  verifyPropertyExist(passValue: any, IsReverse: boolean) {
     var isExist = true;
     var SplitString = this.Input2.split('.');
     var currentValue = passValue;
-    if (SplitString.length > 1) {
-      for (var counter = 0; counter < SplitString.length; counter++) {
+    var maxValue = SplitString.length;
+    if (IsReverse == true) {
+      maxValue = maxValue - 1;
+    }
+
+    if (maxValue > 1) {
+      for (var counter = 0; counter < maxValue; counter++) {
         if (isExist == true) {
+          if (Array.isArray(currentValue) && currentValue.length > 0) {
+            currentValue = currentValue[0];
+          }
           if (
             currentValue &&
             currentValue.hasOwnProperty(SplitString[counter])
@@ -117,7 +129,6 @@ export class App {
     var OldValue;
     if (SplitString.length > 1) {
       var lastValue = SplitString[SplitString.length - 1];
-      console.log('lastvalue', lastValue);
       var currentValue = passValue;
       for (var counter = 0; counter < SplitString.length - 1; counter++) {
         if (currentValue && currentValue.hasOwnProperty(SplitString[counter])) {
@@ -126,8 +137,7 @@ export class App {
             if (Array.isArray(currentValue[SplitString[counter]][lastValue])) {
               var childValues = [];
               var keyProperty = SplitString[counter];
-              console.log(keyProperty);
-              console.log(currentValue[SplitString[counter]][lastValue].length);
+
               for (
                 var childCount = 0;
                 childCount <
@@ -154,15 +164,64 @@ export class App {
     return passValue;
   }
 
-  ProcessJson(passValue: any) {
-    if (this.verifyPropertyExist(passValue) == true) {
+  AddThePropertyWithTheObject(passValue: any) {
+    var SplitString = this.Input2.split('.');
+    var OldValue;
+    if (SplitString.length > 1) {
+      var lastValue = SplitString[SplitString.length - 1];
+      var currentValue = passValue;
+      for (var counter = 0; counter < SplitString.length - 1; counter++) {
+        if (counter == SplitString.length - 2 && Array.isArray(currentValue)) {
+          var finalValue = [];
+          for (
+            var childCounter = 0;
+            childCounter < currentValue.length;
+            childCounter++
+          ) {
+            finalValue.push(currentValue[childCounter][SplitString[counter]]);
+          }
+          var keyPropery = SplitString[counter];
+          var setValue: { [keyPropery: string]: any } = {};
+          var finalValueSet: { [lastValue: string]: any } = {};
+          finalValueSet[lastValue] = finalValue;
+          setValue[keyPropery] = finalValueSet;
+          OldValue[SplitString[counter - 1]] = setValue;
+        } else if (counter == SplitString.length - 2) {
+          var keyPropery = SplitString[counter];
+          var setValue: { [keyPropery: string]: any } = {};
+          var finalValueSet: { [lastValue: string]: any } = {};
+          finalValueSet[lastValue] = currentValue[SplitString[counter]];
+          setValue[keyPropery] = finalValueSet;
+          OldValue[SplitString[counter - 1]] = setValue;
+        } else {
+          OldValue = currentValue;
+          currentValue = currentValue[SplitString[counter]];
+        }
+      }
+    }
+    return passValue;
+  }
+
+  ProcessJson(passValue: any, IsReverse: boolean) {
+    if (
+      IsReverse == true &&
+      this.verifyPropertyExist(passValue, IsReverse) == true
+    ) {
+      // console.log('Yes This is called.');
+      this.AddThePropertyWithTheObject(passValue);
+    } else if (
+      IsReverse == false &&
+      this.verifyPropertyExist(passValue, IsReverse) == true
+    ) {
       return this.DeleteTheLastObjectProperty(passValue);
     } else {
       for (const property in passValue) {
         let objType = typeof passValue[property];
-        // console.log(`${property}: ${passValue[property]}`);
         if (objType == 'object') {
-          passValue[property] = this.ProcessJson(passValue[property]);
+          passValue[property] = this.ProcessJson(
+            passValue[property],
+            IsReverse
+          );
         }
       }
     }
