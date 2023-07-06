@@ -133,7 +133,7 @@ export class App {
     isEdit: true,
   };
 
-  Input2 = 'DoctorBranch.BranchId';
+  Input2 = 'DoctorQualification.Qualification.EnumDetailID';
 
   ReadJson() {
     console.log('First Input: ', this.Input1);
@@ -189,9 +189,6 @@ export class App {
             if (Array.isArray(currentValue[SplitString[counter]][lastValue])) {
               var childValues = [];
               var keyProperty = SplitString[counter];
-              if (SplitString.length == 2) {
-                keyProperty = lastValue;
-              }
 
               for (
                 var childCount = 0;
@@ -199,16 +196,13 @@ export class App {
                 currentValue[SplitString[counter]][lastValue].length;
                 childCount++
               ) {
-                var setValue: { [keyProperty: string]: any } = {};
-                setValue[keyProperty] =
+                var setValue: { [lastValue: string]: any } = {};
+                setValue[lastValue] =
                   currentValue[SplitString[counter]][lastValue][childCount];
                 childValues.push(setValue);
               }
-              if (OldValue == null || OldValue == undefined) {
-                currentValue[SplitString[counter]] = childValues;
-              } else {
-                OldValue[SplitString[counter - 1]] = childValues;
-              }
+
+              currentValue[SplitString[counter]] = childValues;
             } else {
               currentValue[SplitString[counter]] =
                 currentValue[SplitString[counter]][lastValue];
@@ -256,20 +250,21 @@ export class App {
       } else {
         for (var counter = 0; counter < SplitString.length - 1; counter++) {
           if (counter == SplitString.length - 2) {
+            console.log(currentValue);
             var valueToBeSet;
+            console.log(SplitString[counter]);
             if (Array.isArray(currentValue)) {
-              console.log('This is called');
               var finalValue = [];
               for (
                 var childCounter = 0;
                 childCounter < currentValue.length;
                 childCounter++
               ) {
-                finalValue.push(
-                  currentValue[childCounter][SplitString[counter]]
+                console.log(
+                  currentValue[childCounter][SplitString[counter]][lastValue]
                 );
               }
-              valueToBeSet = finalValue;
+              // valueToBeSet = finalValue;
             } else {
               valueToBeSet = currentValue[SplitString[counter]];
             }
