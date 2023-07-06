@@ -250,9 +250,7 @@ export class App {
       } else {
         for (var counter = 0; counter < SplitString.length - 1; counter++) {
           if (counter == SplitString.length - 2) {
-            console.log(currentValue);
             var valueToBeSet;
-            console.log(SplitString[counter]);
             if (Array.isArray(currentValue[SplitString[counter]])) {
               var finalValue = [];
               for (
