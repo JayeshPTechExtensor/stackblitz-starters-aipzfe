@@ -21,119 +21,69 @@ export class App {
 
   // JavaScript source code
   Input1 = {
-    HospitalDoctor: [
+    IsActive: true,
+    Name: 'Test hardik',
+    InsuranceCaseTypeMaster: {
+      CaseTypeId: {
+        EnumDetailID: [6, 7, 8],
+      },
+    },
+    NameOfICManager: 'HHH',
+    RegisteredOffice: '123',
+    Designation: {
+      EnumDetailID: 1,
+    },
+    GSTNumber: 'sadasdsadsa',
+    InsuranceTPAMaster: [
       {
-        HospitalId: {
-          Name: 'CIMS Hospital',
-          Id: 'ccfd61dd-5645-494d-b535-023dcd7d6cad',
-        },
-        Id: 'c2a35d38-b27f-4024-8f35-3f52d380d223',
-        DoctorId: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
-        DoctorBranch: {
-          BranchId: [
-            '92c5b7fa-1b87-4e2a-b47b-2c3413f0447c',
-            '06155375-2f8c-4a49-a25a-d8c141d13376',
-          ],
-        },
+        Id: '',
+        TPAName: 'dsadsa',
       },
       {
-        HospitalId: {
-          Name: 'Sri Krishna Children Hospital',
-          Id: 'd9b1a1b7-8ccd-4453-8d9b-04fd200c6c1b',
-        },
-        Id: 'e5b62f62-8c9f-4c52-a807-6977b228c797',
-        DoctorId: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
-        DoctorBranch: {
-          BranchId: ['3ba58a8f-066a-46c2-89dd-c2b46d140167'],
-        },
+        Id: '',
+        TPAName: 'asdsa ',
       },
     ],
-    Name: 'Dr. Shri Krishnan Aiyar',
-    DoctorQualification: {
-      Qualification: {
-        EnumDetailID: [6, 7, 8, 5],
-      },
-    },
-    Speciality: 2,
-    IsActive: true,
-    AuthenticationType: {
-      EnumDetailID: 1,
-      Description: 'Genuine',
-      Sequence: null,
-      ID: 2571,
-      EnumID: 2227,
-      ParentEnumId: null,
-      SystemValue: 'Genuine',
-      DisplayValue: 'Genuine',
-    },
-    Remark:
-      "Dr. Shri Krishnan Aiyar is best doctor and provide best treatment , thanks to the nursing staff who's Taking proper care.\n\n",
+    Commment: '',
     EntityLocation: [
       {
+        State: '',
+        City: '',
+        PinCode: '',
+        Address: '',
         LocationId: {
-          CityId: {
-            StateID: 2,
-            CityName: 'Nellimarla',
-            ID: 3387,
-          },
-          CountryId: null,
           StateId: {
-            CountryID: 101,
-            StateName: 'Andhra Pradesh',
-            ID: 2,
+            ID: 1,
           },
-          Pincode: '989 887',
-          Address:
-            'Sri Krishna School Rd, Saravana Nagar, Koundampalayam, Coimbatore, Tamil Nadu, India',
-          Id: '79f36afd-a95c-4418-bcf4-c97961e9ad5f',
-          GoogleLocationData:
-            'Sri Krishna School Rd, Saravana Nagar, Koundampalayam, Coimbatore, Tamil Nadu, India',
-          Longitude: null,
-          Lattitude: null,
+          CityId: {
+            ID: 6756,
+          },
+          Pincode: '123 123',
+          Address: 'sadas sadsa d ',
+          Id: '',
         },
-        PrimaryKeyValue: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
-        AppObjectId: '057c1748-c6d0-4294-9495-33cca69e824f',
-        Id: 'f353bef8-fb52-4c9d-9a36-1009da3c5b97',
+        AppobjectId: '937057CA-5FA3-4871-A1D3-5EA6715C0937',
+        Id: '',
+        AppObjectId: '62213C2B-313E-4643-B343-F42E50131835',
       },
     ],
     EntityContact: [
       {
+        AppobjectId: '62213C2B-313E-4643-B343-F42E50131835',
         ContactId: {
-          SecondaryEmail: null,
-          PrimaryEmail: 'krishna@yopmail.com',
-          PrimaryContactNumber: '7867867675',
-          Id: '180a3720-2ad4-436f-b468-a944f7ee2477',
-          SecondaryContactNumber: null,
+          Id: '',
+          PrimaryEmail: 'dad@dd.com',
+          PrimaryContactNumber: '3432432442',
         },
-        IsDefault: null,
-        IsRelativeContact: null,
-        Id: 'a4cbc7bc-aa65-49ea-a4ed-8f964ffa68d3',
-        Status: null,
-        AppobjectId: '057c1748-c6d0-4294-9495-33cca69e824f',
-        PrimaryKeyValue: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
+        Id: '',
       },
     ],
-    RegNumber: '8978675',
-    ImageId: {
-      ID: 97,
-      URL: 'https://tab-qa.techextensor.com/AppData/Phoenix/Attachments/Files/20230427061245246_1682575964120.png',
-    },
-    RecordInfo: {
-      IsSystemRecord: null,
-      BlueprintId: null,
-      BlueprintStatusId: null,
-      RecordId: '85096271-33b0-411f-b6c4-d753a895be3d',
-      PrimaryKey: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
-    },
-    Id: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
-    SrNumber: 'PCS',
-    customParams: {
-      Id: '326242fb-e8a7-4d57-9dbf-2335220ebb8f',
-    },
-    isEdit: true,
+    TATTarget: 1111,
+    SuccessTarget: 22,
+    ProductsHandled: 3244,
   };
 
-  Input2 = 'DoctorQualification.Qualification.EnumDetailID';
+  Input2 = 'InsuranceCaseTypeMaster.CaseTypeId.EnumDetailID';
 
   ReadJson() {
     console.log('First Input: ', this.Input1);
@@ -258,7 +208,6 @@ export class App {
           if (counter == SplitString.length - 2) {
             var valueToBeSet;
             if (Array.isArray(currentValue)) {
-              console.log('This is called');
               var finalValue = [];
               for (
                 var childCounter = 0;
