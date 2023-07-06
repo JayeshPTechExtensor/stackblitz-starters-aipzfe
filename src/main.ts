@@ -9,10 +9,6 @@ import { splitNsName } from '@angular/compiler';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h1>Hello from {{name}}!</h1>
-    <a target="_blank" href="https://angular.io/start">
-      Learn more about Angular 
-    </a>
     <button (click)="ReadJson()">click</button>
   `,
 })
@@ -148,6 +144,7 @@ export class App {
   AddDifferenceInGlobalObject(PropertyName: any, OldValue: any, NewValue: any) {
     var obj = {
       PropertyName: PropertyName,
+      ObjectType: typeof OldValue,
       OldValue: OldValue,
       NewValue: NewValue,
     };
@@ -162,13 +159,11 @@ export class App {
         var value1 = obj1[property];
         var value2 = obj2[property];
 
-        if (value1 != value2) {
+        let objType = typeof value1;
+        if (objType == 'object' || Array.isArray(value1)) {
+          this.FindTheDifferencesFromTwoObjects(value1, value2);
+        } else if (value1 != value2) {
           this.AddDifferenceInGlobalObject(property, value1, value2);
-        } else {
-          let objType = typeof value1;
-          if (objType == 'object' || Array.isArray(value1)) {
-            this.FindTheDifferencesFromTwoObjects(value1, value2);
-          }
         }
       }
     }
