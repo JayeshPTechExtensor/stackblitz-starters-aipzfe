@@ -189,6 +189,9 @@ export class App {
             if (Array.isArray(currentValue[SplitString[counter]][lastValue])) {
               var childValues = [];
               var keyProperty = SplitString[counter];
+              if (SplitString.length == 2) {
+                keyProperty = lastValue;
+              }
 
               for (
                 var childCount = 0;
@@ -196,13 +199,16 @@ export class App {
                 currentValue[SplitString[counter]][lastValue].length;
                 childCount++
               ) {
-                var setValue: { [lastValue: string]: any } = {};
-                setValue[lastValue] =
+                var setValue: { [keyProperty: string]: any } = {};
+                setValue[keyProperty] =
                   currentValue[SplitString[counter]][lastValue][childCount];
                 childValues.push(setValue);
               }
-
-              currentValue[SplitString[counter]] = childValues;
+              if (OldValue == null || OldValue == undefined) {
+                currentValue[SplitString[counter]] = childValues;
+              } else {
+                OldValue[SplitString[counter - 1]] = childValues;
+              }
             } else {
               currentValue[SplitString[counter]] =
                 currentValue[SplitString[counter]][lastValue];
@@ -251,15 +257,16 @@ export class App {
         for (var counter = 0; counter < SplitString.length - 1; counter++) {
           if (counter == SplitString.length - 2) {
             var valueToBeSet;
-            if (Array.isArray(currentValue[SplitString[counter]])) {
+            if (Array.isArray(currentValue)) {
+              console.log('This is called');
               var finalValue = [];
               for (
                 var childCounter = 0;
-                childCounter < currentValue[SplitString[counter]].length;
+                childCounter < currentValue.length;
                 childCounter++
               ) {
                 finalValue.push(
-                  currentValue[SplitString[counter]][childCounter][lastValue]
+                  currentValue[childCounter][SplitString[counter]]
                 );
               }
               valueToBeSet = finalValue;
