@@ -25,7 +25,7 @@ export class App {
     Name: 'Test hardik',
     InsuranceCaseTypeMaster: {
       CaseTypeId: {
-        EnumDetailID: 6,
+        EnumDetailID: [6, 7, 8],
       },
     },
     NameOfICManager: 'HHH',
@@ -171,26 +171,27 @@ export class App {
       var lastValue = SplitString[SplitString.length - 1];
       var currentValue = passValue;
       for (var counter = 0; counter < SplitString.length - 1; counter++) {
-        if (counter == SplitString.length - 2 && Array.isArray(currentValue)) {
-          var finalValue = [];
-          for (
-            var childCounter = 0;
-            childCounter < currentValue.length;
-            childCounter++
-          ) {
-            finalValue.push(currentValue[childCounter][SplitString[counter]]);
+        if (counter == SplitString.length - 2) {
+          var valueToBeSet;
+
+          if (Array.isArray(currentValue)) {
+            var finalValue = [];
+            for (
+              var childCounter = 0;
+              childCounter < currentValue.length;
+              childCounter++
+            ) {
+              finalValue.push(currentValue[childCounter][SplitString[counter]]);
+            }
+            valueToBeSet = finalValue;
+          } else {
+            valueToBeSet = currentValue[SplitString[counter]];
           }
+
           var keyPropery = SplitString[counter];
           var setValue: { [keyPropery: string]: any } = {};
           var finalValueSet: { [lastValue: string]: any } = {};
-          finalValueSet[lastValue] = finalValue;
-          setValue[keyPropery] = finalValueSet;
-          OldValue[SplitString[counter - 1]] = setValue;
-        } else if (counter == SplitString.length - 2) {
-          var keyPropery = SplitString[counter];
-          var setValue: { [keyPropery: string]: any } = {};
-          var finalValueSet: { [lastValue: string]: any } = {};
-          finalValueSet[lastValue] = currentValue[SplitString[counter]];
+          finalValueSet[lastValue] = valueToBeSet;
           setValue[keyPropery] = finalValueSet;
           OldValue[SplitString[counter - 1]] = setValue;
         } else {
